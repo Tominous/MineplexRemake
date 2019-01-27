@@ -7,6 +7,7 @@ import java.util.UUID;
 
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.mswsplex.mineplex.msws.Mineplex;
 import org.mswsplex.mineplex.utils.MSG;
 
@@ -18,6 +19,8 @@ public class CPlayer {
 
 	private File saveFile, dataFile;
 	private YamlConfiguration data;
+
+	private Stats stats;
 
 	public CPlayer(OfflinePlayer player, Mineplex plugin) {
 		this.player = player;
@@ -36,6 +39,15 @@ public class CPlayer {
 				e.printStackTrace();
 			}
 		data = YamlConfiguration.loadConfiguration(saveFile);
+		this.stats = new Stats(this, plugin);
+	}
+
+	public Stats getStats() {
+		return stats;
+	}
+
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 
 	public OfflinePlayer getPlayer() {
@@ -127,5 +139,11 @@ public class CPlayer {
 
 	public boolean getSaveBoolean(String id) {
 		return hasSaveData(id) ? (boolean) getSaveData(id) : false;
+	}
+
+	public void refreshTabName() {
+		if (getPlayer().isOnline())
+			((Player) getPlayer())
+					.setPlayerListName(MSG.color(getStats().getRank().getPrefix() + getPlayer().getName()));
 	}
 }

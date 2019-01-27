@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.mswsplex.mineplex.managers.CPlayer;
+import org.mswsplex.mineplex.managers.Stats;
 import org.mswsplex.mineplex.msws.Mineplex;
 import org.mswsplex.mineplex.utils.MSG;
 
@@ -24,12 +25,13 @@ public class ChatListener implements Listener {
 		CPlayer cp = plugin.getCPlayer(player);
 
 		String msg = MSG.filter(event.getMessage());
+		Stats stats = cp.getStats();
 
 		for (Player target : Bukkit.getOnlinePlayers()) {
-			target.sendMessage(MSG
-					.color(MSG.getLevelColor(cp.getSaveInteger("level")) + cp.getSaveInteger("level") + " &r"
-							+ plugin.getPlayerManager().getRank(player).getPrefix() + " &e")
+			target.sendMessage(MSG.color(
+					MSG.getLevelColor(stats.getLevel()) + stats.getLevel() + " " + stats.getRank().getPrefix() + "&e")
 					+ player.getName() + MSG.color(" &r") + msg);
 		}
+
 	}
 }

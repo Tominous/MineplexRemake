@@ -10,11 +10,12 @@ import java.util.Comparator;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mswsplex.mineplex.commands.DefaultCommand;
+import org.mswsplex.mineplex.commands.RankCommand;
 import org.mswsplex.mineplex.events.ChatListener;
 import org.mswsplex.mineplex.events.OnJoinListener;
 import org.mswsplex.mineplex.events.ServerListPingListener;
@@ -50,7 +51,7 @@ public class Mineplex extends JavaPlugin {
 		MSG.plugin = this;
 		pManager = new PlayerManager(this);
 
-		new DefaultCommand(this);
+		new RankCommand(this);
 		new ServerListPingListener(this);
 		new OnJoinListener(this);
 		new ChatListener(this);
@@ -78,8 +79,7 @@ public class Mineplex extends JavaPlugin {
 		}
 
 		for (Player player : Bukkit.getOnlinePlayers()) {
-			player.setPlayerListName(
-					MSG.color(getPlayerManager().getRank(player).getPrefix() + " &r") + player.getName());
+			getCPlayer(player).refreshTabName();
 		}
 
 		swears = new ArrayList<>();
@@ -102,6 +102,11 @@ public class Mineplex extends JavaPlugin {
 		});
 
 		MSG.log("Successfully registered " + swears.size() + " swear words.");
+	}
+
+	public void onDisable() {
+		for (Player p : Bukkit.getOnlinePlayers())
+			pManager.removePlayer(p);
 	}
 
 	public void saveData() {
@@ -134,7 +139,7 @@ public class Mineplex extends JavaPlugin {
 		return pManager;
 	}
 
-	public CPlayer getCPlayer(Player player) {
+	public CPlayer getCPlayer(OfflinePlayer player) {
 		return pManager.getPlayer(player);
 	}
 }

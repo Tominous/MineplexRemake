@@ -256,7 +256,7 @@ public class MSG {
 		CPlayer cp = plugin.getCPlayer(player);
 		return string.replace("%world%", player.getWorld().getName()).replace("%gems%", cp.getSaveInteger("gems") + "")
 				.replace("%shards%", cp.getSaveInteger("shards") + "")
-				.replace("%rawrank%", MSG.camelCase(plugin.getPlayerManager().getRank(player) + ""))
+				.replace("%rawrank%", MSG.camelCase(cp.getStats().getRank() + ""))
 				.replace("%player%", player.getName());
 	}
 
