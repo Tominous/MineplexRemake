@@ -1,0 +1,8 @@
+name: MineplexRemake
+main: org.mswsplex.mineplex.msws.Mineplex
+version: 1.0
+description: Mineplex Remake
+commands:
+   command1:
+      usage: /<command>
+      description: foo
