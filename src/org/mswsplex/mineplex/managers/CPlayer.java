@@ -126,7 +126,7 @@ public class CPlayer {
 	}
 
 	public String getSaveString(String id) {
-		return (String) getSaveData(id).toString();
+		return (getSaveData(id) + "");
 	}
 
 	public double getSaveDouble(String id) {

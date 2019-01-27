@@ -1,1 +1,14 @@
-NoPermission: '%prefix% You do not have permission to do this.'
+NoPermission: '&9Permissions> &7You do not have permission to do this.'
+Missing:
+  Number: '&9Arguments> &7You are missing a &enumber&7 argument.'
+  Message: '&9Arguments> &7You are missing a &emessage&7 argument.'
+  Player: '&9Arguments> &7You are missing a &eplayer&7 argument.'
+Help:
+  news:
+  - '&4/news list &7- Lists all news messages'
+  - '&4/news add [Message] &7- Addes a new news line'
+  - '&4/news set [line] [Message] &7- Sets a news line''s message'
+  - '&4/news delete [line] &7- Delets a news line'
+  rank:
+  - '&4/rank set [Player] [Rank] &7- Sets a player''s rank'
+  - '&6/rank get [Player] &7- Returns a player''s rank'

@@ -35,26 +35,27 @@ public class RankCommand implements CommandExecutor, TabCompleter {
 			}
 		}
 		if (args.length == 0) {
-			MSG.tell(sender, "&4/rank set [Player] [Rank] &7- Sets a player's rank.");
-			MSG.tell(sender, "&4/rank get [Player] &7Gets a player's rank.");
+			MSG.sendHelp(sender, 0, "rank");
 			return true;
 		}
 
 		OfflinePlayer target;
 		if (args.length < 2) {
-			MSG.tell(sender, "Missing player");
+			MSG.tell(sender, MSG.getString("Missing.Player", "specify a player"));
 			return true;
 		}
 		switch (args[0].toLowerCase()) {
 		case "set":
 			target = Bukkit.getOfflinePlayer(args[1]);
 			plugin.getCPlayer(target).getStats().setRank(Rank.valueOf(args[2].toUpperCase()));
+			plugin.getCPlayer(target).getStats().saveData();
 			break;
 		case "get":
 			target = Bukkit.getOfflinePlayer(args[1]);
 			MSG.tell(sender, target.getName() + " has rank: " + plugin.getCPlayer(target).getStats().getRank() + ".");
 			break;
 		default:
+			MSG.sendHelp(sender, 0, "rank");
 			return false;
 		}
 		return true;

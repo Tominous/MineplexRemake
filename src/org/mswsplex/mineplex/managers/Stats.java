@@ -22,7 +22,10 @@ public class Stats implements ConfigurationSerializable {
 		playtime = (long) cp.getSaveDouble("stats.playtime");
 		gems = (int) cp.getSaveInteger("stats.gems");
 		shards = (int) cp.getSaveInteger("stats.shards");
-		rank = Rank.valueOf(cp.getSaveString("stats.rank"));
+		if (!cp.hasSaveData("stats.rank"))
+			rank = Rank.DEFAULT;
+		else
+			rank = Rank.valueOf(cp.getSaveString("stats.rank"));
 		levelProgress = (float) cp.getSaveDouble("stats.levelprogress");
 		level = cp.getSaveInteger("stats.level");
 	}

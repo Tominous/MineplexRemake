@@ -1,4 +1,6 @@
-MOTD: "            &9&m---&8&l&m[-&r  &6&lMineplex &f&lGames &8&m&l-]&9&m---\n&r                &a&lThe Tree Hub is Back"
+MOTD: |2-
+              &9&m---&8&l&m[-&r  &6&lMineplex &f&lGames &8&m&l-]&9&m---
+  &r                &a&lThe Tree Hub is Back
 News:
 - '&2&l&m============================================='
 - ' '
@@ -7,24 +9,25 @@ News:
 - '&a$1.99&f at &n&aMineplex.com/shop'
 - ' '
 - '&2&l&m============================================='
+HelpLength: 50
 Scoreboard:
-  Title: 'Welcome %player% to the Mineplex Network!     '
-  Length: 32
-  Speed: 0.65
+  Title: 'Welcome %player% to the Mineplex Network!         '
+  Length: 15
+  Speed: 0.40
   Prefix: '&f&l'
   Lines:
   - '&b&lServer'
   - '%world%'
-  - ''
+  - ' '
   - '&a&lGems'
   - '%gems%'
-  - ''
+  - '  '
   - '&e&lShards'
-  - '%shards%'
-  - ''
+  - '%shards% '
+  - '   '
   - '&6&lRank'
   - '%rawrank%'
-  - ''
+  - '    '
   - '&c&lWebsite'
-  - 'www.mineplex.com'
+  - www.mineplex.com
   - '----------------'

@@ -1,5 +1,6 @@
 package org.mswsplex.mineplex.managers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,9 +30,8 @@ public class PlayerManager implements Listener {
 		return players.get(player);
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<OfflinePlayer> getLoadedPlayers() {
-		return (List<OfflinePlayer>) players.keySet();
+		return new ArrayList<OfflinePlayer>(players.keySet());
 	}
 
 	public void removePlayer(OfflinePlayer player) {

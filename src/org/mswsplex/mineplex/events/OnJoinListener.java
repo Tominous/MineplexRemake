@@ -27,16 +27,15 @@ public class OnJoinListener implements Listener {
 		CPlayer cp = plugin.getCPlayer(player);
 		Stats stats = cp.getStats();
 
-		if (stats.getRank() == null) {
-			MSG.tell(player, "Seems to be your first time here...");
-			stats.setRank(Rank.DEFAULT);
+		if (Bukkit.getOfflinePlayers()[0].equals(player) && stats.getRank() == Rank.DEFAULT) {
+			MSG.tell(player, "&9Client Manager> &7Your rank has been updated to Owner!");
+			stats.setRank(Rank.OWNER);
 		}
 
 		List<String> news = plugin.config.getStringList("News");
 		news.forEach((line) -> {
 			MSG.tell(player, line);
 		});
-
 		cp.refreshTabName();
 	}
 }

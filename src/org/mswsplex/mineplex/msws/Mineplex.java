@@ -15,6 +15,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mswsplex.mineplex.commands.NewsCommand;
 import org.mswsplex.mineplex.commands.RankCommand;
 import org.mswsplex.mineplex.events.ChatListener;
 import org.mswsplex.mineplex.events.OnJoinListener;
@@ -52,6 +53,8 @@ public class Mineplex extends JavaPlugin {
 		pManager = new PlayerManager(this);
 
 		new RankCommand(this);
+		new NewsCommand(this);
+		
 		new ServerListPingListener(this);
 		new OnJoinListener(this);
 		new ChatListener(this);
@@ -105,7 +108,7 @@ public class Mineplex extends JavaPlugin {
 	}
 
 	public void onDisable() {
-		for (Player p : Bukkit.getOnlinePlayers())
+		for (OfflinePlayer p : pManager.getLoadedPlayers())
 			pManager.removePlayer(p);
 	}
 

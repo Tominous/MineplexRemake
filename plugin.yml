@@ -3,6 +3,7 @@ main: org.mswsplex.mineplex.msws.Mineplex
 version: 1.0
 description: Mineplex Remake
 commands:
-   rank:
-      usage: /<command> [Set/Get] [Player] [Rank]
-      description: foo
+  rank:
+    usage: /<command> [Set/Get] [Player] [Rank]
+  news:
+    usage: /<command> [list/set/delete]
